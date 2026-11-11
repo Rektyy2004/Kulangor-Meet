@@ -1,0 +1,11 @@
+export type Coordinate = { lat: number; lng: number };
+export type Place = Coordinate & { id: string; name: string; address: string; source: "demo" | "google" | "computed"; category?: string; rating?:number; userRatingCount?:number; businessStatus?:string; recommendationRank?:number; googleMapsUri?:string; broadArea?:boolean };
+export type Suggestion = { id: string; name: string; address: string; broadArea?:boolean };
+export type Participant = { id: string; name: string; place: Place; color: string; joinedAt: string };
+export type MeetingSession = { id: string; name: string; capacity: number; participants: Participant[]; createdAt: string; mode: "demo" | "live" };
+export type Journey = { participantId: string; durationSeconds: number; distanceMeters: number; polyline?: Coordinate[] };
+export type CandidateResult = { place: Place; journeys: Journey[]; standardDeviationSeconds: number; meanSeconds: number; maxSeconds: number; minSeconds: number; rangeSeconds: number; selectedByUser?: boolean; unreachableParticipantIds?:string[] };
+export type VenueSelection = { placeId: string; sessionToken?: string };
+export type Calculation = { sessionId: string; departureTime: string; calculatedAt: string; mode: "demo" | "live"; centroid: Coordinate; center?:CandidateResult; candidates: CandidateResult[]; winner: CandidateResult; warnings: string[]; selectedPlaceIds?:string[]; excludedSelectedPlaces?: {id:string;name:string;reason:string}[] };
+export type Configuration = { googleConfigured: boolean; browserMapConfigured: boolean; persistentStorage: boolean };
+export type SessionResponse = { session: MeetingSession; configuration: Configuration; revision?:string };

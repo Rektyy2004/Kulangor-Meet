@@ -1,0 +1,14 @@
+node_modules/
+.next/
+.vercel/
+.env*
+!.env.example
+.data/
+*.tsbuildinfo
+__pycache__/
+.venv/
+renderer/cache/
+renderer/media/
+renderer/output/
+test-results/
+.superpowers/

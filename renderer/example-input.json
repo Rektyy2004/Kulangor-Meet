@@ -1,0 +1,10 @@
+{
+  "source": "manual",
+  "independentCoordinates": true,
+  "title": "A fair place to come together.",
+  "participants": [
+    { "name": "North", "lat": 3.16, "lng": 101.68 },
+    { "name": "South", "lat": 3.12, "lng": 101.69 }
+  ],
+  "destination": { "name": "Meeting point", "lat": 3.14, "lng": 101.69 }
+}

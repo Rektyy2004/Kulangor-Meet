@@ -1,0 +1,134 @@
+{
+  "source": "synthetic",
+  "engine": "manim",
+  "fps": 60,
+  "width": 1280,
+  "height": 720,
+  "durationSeconds": 10,
+  "nodes": 1131,
+  "edges": 4320,
+  "destination": "The meeting point",
+  "trafficAware": false,
+  "journeys": [
+    {
+      "name": "Ahmad",
+      "color": "#31D9C6",
+      "meters": 16698.89,
+      "estimatedRoadSeconds": 1031.25
+    },
+    {
+      "name": "Sarah",
+      "color": "#F876AA",
+      "meters": 14997.58,
+      "estimatedRoadSeconds": 998.27
+    },
+    {
+      "name": "Jason",
+      "color": "#9CDF6B",
+      "meters": 13734.31,
+      "estimatedRoadSeconds": 760.67
+    },
+    {
+      "name": "Priya",
+      "color": "#AB8BFA",
+      "meters": 12253.77,
+      "estimatedRoadSeconds": 803.89
+    },
+    {
+      "name": "Wei Ming",
+      "color": "#F8BB59",
+      "meters": 15584.13,
+      "estimatedRoadSeconds": 973.39
+    },
+    {
+      "name": "Aisyah",
+      "color": "#57B9FF",
+      "meters": 17702.92,
+      "estimatedRoadSeconds": 980.47
+    },
+    {
+      "name": "Daniel",
+      "color": "#FF8772",
+      "meters": 15545.55,
+      "estimatedRoadSeconds": 921.94
+    },
+    {
+      "name": "Mei Ling",
+      "color": "#63DAB2",
+      "meters": 16042.9,
+      "estimatedRoadSeconds": 981.76
+    },
+    {
+      "name": "Farhan",
+      "color": "#EBC5FF",
+      "meters": 13090.96,
+      "estimatedRoadSeconds": 814.58
+    },
+    {
+      "name": "Kavitha",
+      "color": "#D5DD5B",
+      "meters": 10145.0,
+      "estimatedRoadSeconds": 700.07
+    },
+    {
+      "name": "Adam",
+      "color": "#70D8F2",
+      "meters": 12763.12,
+      "estimatedRoadSeconds": 761.55
+    },
+    {
+      "name": "Hannah",
+      "color": "#EF8BD9",
+      "meters": 15930.95,
+      "estimatedRoadSeconds": 965.45
+    },
+    {
+      "name": "Raj",
+      "color": "#B5DA93",
+      "meters": 13726.11,
+      "estimatedRoadSeconds": 760.22
+    },
+    {
+      "name": "Siti",
+      "color": "#8FADFF",
+      "meters": 12651.76,
+      "estimatedRoadSeconds": 764.19
+    },
+    {
+      "name": "Marcus",
+      "color": "#E9A75A",
+      "meters": 7930.82,
+      "estimatedRoadSeconds": 475.4
+    },
+    {
+      "name": "Nurul",
+      "color": "#A3E5DD",
+      "meters": 9414.25,
+      "estimatedRoadSeconds": 521.4
+    },
+    {
+      "name": "Chloe",
+      "color": "#FBB8B9",
+      "meters": 8755.7,
+      "estimatedRoadSeconds": 545.88
+    },
+    {
+      "name": "Arjun",
+      "color": "#C2B4F5",
+      "meters": 6715.29,
+      "estimatedRoadSeconds": 588.93
+    },
+    {
+      "name": "Amir",
+      "color": "#67BC93",
+      "meters": 8520.95,
+      "estimatedRoadSeconds": 550.98
+    },
+    {
+      "name": "Grace",
+      "color": "#F4D49C",
+      "meters": 12685.48,
+      "estimatedRoadSeconds": 727.76
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+-r requirements-demo.txt
+osmnx==2.1.1
+scikit-learn==1.9.1
+manim==0.22.1
