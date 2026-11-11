@@ -50,7 +50,7 @@ The code already reads these values in `src/lib/google.ts` and `src/components/G
 
 For custom/production map styling, create a JavaScript map ID under Google Maps Platform → Map Management, and add `NEXT_PUBLIC_GOOGLE_MAP_ID=YOUR_MAP_ID`. Local testing uses Google’s `DEMO_MAP_ID` by default.
 
-Leave the Supabase settings blank while testing locally. Shared hosting can use the Supabase database setup in the main README. Leave `NEXT_PUBLIC_APP_URL` blank to make invitations use the address currently open in the browser.
+Leave the Supabase settings blank while testing locally. Shared hosting can use the Supabase database setup in the main README. Invitations use the address currently open in the browser.
 
 ## GitHub later
 

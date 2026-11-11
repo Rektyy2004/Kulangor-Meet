@@ -19,6 +19,7 @@ beforeEach(async () => {
   vi.stubEnv("KULANGOR_DATA_DIR", directory);
   vi.stubEnv("SUPABASE_URL", "");
   vi.stubEnv("SUPABASE_SERVICE_ROLE_KEY", "");
+  vi.stubEnv("VERCEL", "");
   vi.clearAllMocks();
   provider.placeDetails.mockImplementation(async (id: string) => ({ id, name: "Verified place", address: "Kuala Lumpur", source: "google", lat: 3.1, lng: 101.65 }));
 });
@@ -28,6 +29,12 @@ function request(body: unknown, token?: string) { return new Request("http://loc
 function context(id: string) { return { params: Promise.resolve({ id }) }; }
 
 describe("live meeting HTTP handlers", () => {
+  it("requires shared storage before opening a Vercel meetup",async()=>{
+    vi.stubEnv("VERCEL","1");
+    const response=await createSession(request({name:"Hosted meetup",capacity:20}));
+    expect(response.status).toBe(503);
+    expect((await response.json()).error).toContain("meetup database");
+  });
   it("detects remote edits without querying Google on each refresh check",async()=>{
     const result=await (await createSession(request({name:"Shared refresh",capacity:1}))).json();
     const id=result.session.id;

@@ -64,7 +64,7 @@ Without Supabase, group records are in ignored `.data/sessions/`, for one local 
 
 For shared hosting, configure `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY`, and run [database/schema.sql](database/schema.sql) in the Supabase SQL editor. Existing deployments must also run the new `update_meeting_participant` function included there. Keep the service key server-side and add a distributed rate limiter for multiple web instances.
 
-Deploy to a Node-capable HTTPS host so phone/laptop participants can use the same invitation. Localhost links work only on the device opening them. Leave `NEXT_PUBLIC_APP_URL` blank to use the browser's current website address.
+Deploy to a Node-capable HTTPS host so phone/laptop participants can use the same invitation. Invitations use the browser’s current website address. Localhost links work only on the device opening them.
 
 `.env.local`, generated builds and local participant records are ignored by Git. Commit only the blank `.env.example` template. Before GitHub upload, check staged files and history for credentials; configure production secrets in the host's environment settings. No GitHub upload has been performed. Adapt the privacy/terms templates to the operator's real identity and retention policy before public operation.
 

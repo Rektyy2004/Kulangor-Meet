@@ -13,7 +13,7 @@ function localTime(date:Date) {
 }
 async function api<T>(url:string, options:RequestInit={}):Promise<T> {
   const res=await fetch(url,{cache:"no-store",...options});
-  const body=await res.json();
+  const body=await res.json().catch(()=>{throw new Error("The meetup server did not respond. Please try again.");});
   if(!res.ok) throw new Error(body.error || "Please try again.");
   return body;
 }
@@ -140,7 +140,7 @@ export default function Meetup() {
       setCalculation(previous=>previous?{...previous,candidates:previous.candidates.map(c=>c.place.id===candidate.place.id?{...c,journeys:c.journeys.map(j=>({...j,polyline:result.journeys.find(r=>r.participantId===j.participantId)?.polyline}))}:c)}:previous);
     }catch(e){if(requestId===routeRequest.current)setError((e as Error).message);}
   }
-  const inviteUrl=typeof window!=="undefined" && session ? `${(process.env.NEXT_PUBLIC_APP_URL || window.location.origin).replace(/\/$/,"")}/?session=${session.id}` : "";
+  const inviteUrl=typeof window!=="undefined" && session ? `${window.location.origin}/?session=${encodeURIComponent(session.id)}` : "";
   async function copy() {try {await navigator.clipboard.writeText(inviteUrl);setCopied(true);}catch {setCopied(false);}}
   const addChoice=(place:Suggestion|null,sessionToken:string)=>{if(place)setChoices(previous=>previous.some(p=>p.id===place.id)?previous:[...previous,{...place,sessionToken}].slice(0,5));};
   return <div className="meetup-shell">
@@ -152,7 +152,7 @@ export default function Meetup() {
       {error && <div className="error-banner" role="alert"><span>{error}</span><button aria-label="Dismiss error" onClick={()=>setError("")}><X size={18}/></button></div>}
       <div className="overview-grid">
         <section className="card map-panel"><div className="panel-heading"><h2>Your group’s route preview</h2></div>
-          {session ? <GoogleRoutePreview session={session} candidate={candidate}/> : <div className="preview-empty"><LoaderCircle className="spin"/><p>{loading?"Opening your meetup…":"Preview unavailable"}</p></div>}
+          {session ? <GoogleRoutePreview session={session} candidate={candidate}/> : <div className="map-container"><div className="map-empty">{loading?<><LoaderCircle className="spin"/><p>Opening your meetup…</p></>:<><MapPin size={32}/><h3>Couldn’t open the meetup</h3><button className="button button-white" onClick={()=>window.location.reload()}>Try again</button></>}</div></div>}
         </section>
         <section className="card group-panel"><div className="panel-heading"><h2><Users size={18}/>People <span className="count">{session?.participants.length??0}/{session?.capacity??20}</span></h2><button className="icon-button" aria-label="Refresh people" disabled={busy || !session} onClick={refresh}><RefreshCw size={16}/></button></div>
           {candidate && <p className="people-destination">To {candidate.place.name}</p>}<div className="people-list">{session?.participants.map(person=>{const journey=candidate?.journeys.find(j=>j.participantId===person.id);return <div className="person" key={person.id}><span className="person-dot" style={{background:person.color}}/><div><strong>{person.name}</strong><small title={person.place.address}>{person.place.name}</small></div><div className="person-time">{journey?<><b>{(journey.distanceMeters/1000).toFixed(1)} km</b><small>{minutes(journey.durationSeconds)} min drive</small></>:candidate?<small>No driving route</small>:null}{session.mode!=="demo" && <a className="edit-person" aria-label={`Edit starting point for ${person.name}`} href={`/join/${session.id}?participantId=${person.id}`} target="_blank" rel="noreferrer">Edit</a>}</div></div>;})}{!loading && !session?.participants.length && <p className="empty-state">Add starting points or invite people.<br/>Up to 20 people.</p>}</div>

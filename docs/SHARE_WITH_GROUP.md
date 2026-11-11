@@ -28,8 +28,10 @@ GitHub stores the source. Vercel runs the website. Your group only needs the mee
    | `SUPABASE_URL` | Supabase project URL. |
    | `SUPABASE_SERVICE_ROLE_KEY` | Private service-role key for that Supabase project. |
 
-   Leave `NEXT_PUBLIC_APP_URL` unset on Vercel so invitations use the deployed hostname. Do not copy `http://localhost:3000` into Vercel. You can optionally set `NEXT_PUBLIC_GOOGLE_MAP_ID` to your own Google JavaScript map ID.
+   Invitations use the hostname where the app is open. You can optionally set `NEXT_PUBLIC_GOOGLE_MAP_ID` to your own Google JavaScript map ID.
 4. Deploy. Add the exact live hostname, such as `https://your-project.vercel.app/*`, to the **Websites** restrictions for the browser key in Google Cloud. Save and allow the restriction change to take effect.
 5. Open the live site. Test a starting point, address search and the map. Click **Invite people → Copy invitation link**, then send that one link to the group. Anyone with the invite link can edit the meetup. Do not post it publicly.
 
 Hosted meetups start with their own stored data; old localhost sessions are not automatically moved into Supabase.
+
+If the site opens but **Invite people**, search, and playback are disabled, check **Project → Settings → Environment Variables**. All four exact names above must be set for **Production**. GitHub does not upload `.env.local`. In **Deployments**, redeploy after saving the variables so Next.js includes the browser key in the new build.
