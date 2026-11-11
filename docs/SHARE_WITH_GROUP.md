@@ -18,6 +18,7 @@ GitHub stores the source. Vercel runs the website. Your group only needs the mee
 
 1. In your Supabase project, open **SQL Editor → New query** and run [the meetup schema](../database/schema.sql). The hosted app needs a database; it cannot rely on this computer's local session files.
 2. In [Vercel](https://vercel.com/new), import the private GitHub repository and keep the Next.js framework preset.
+   If the import shows a multi-service configuration prompt, return to **New Project** and import the latest `main` again. The root `vercel.json` pins the Next.js preset. The optional `renderer/` is a local tool and is not a separate web service. Keep the root directory at the repository root.
 3. Under **Environment Variables**, add the four settings below using the values from your local setup. Keep the private values in the host's settings, never in GitHub source or chat.
 
    | Setting | Value |
