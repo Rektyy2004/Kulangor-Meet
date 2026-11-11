@@ -30,8 +30,14 @@ export function authorizeOrganizer(session: StoredSession, token: string | null)
 async function supabase<T>(resource: string, options: RequestInit = {}): Promise<T> {
   const url = process.env.SUPABASE_URL!.replace(/\/$/, "");
   if (!url.startsWith("https://") && !url.startsWith("http://localhost") && !url.startsWith("http://127.0.0.1")) throw new HttpError(503, "SUPABASE_URL must use HTTPS (except local development).");
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY!;
+  const headers = new Headers(options.headers);
+  headers.set("Content-Type", "application/json");
+  headers.set("apikey", key);
+  // Modern secret keys are not JWTs; only the legacy key goes in Authorization.
+  if (!key.startsWith("sb_secret_")) headers.set("Authorization", `Bearer ${key}`);
   let response: Response;
-  try { response = await fetch(`${url}/rest/v1/${resource}`, { ...options, cache: "no-store", signal: AbortSignal.timeout(15_000), headers: { "Content-Type": "application/json", apikey: process.env.SUPABASE_SERVICE_ROLE_KEY!, Authorization: `Bearer ${process.env.SUPABASE_SERVICE_ROLE_KEY}`, ...options.headers } }); }
+  try { response = await fetch(`${url}/rest/v1/${resource}`, { ...options, cache: "no-store", signal: AbortSignal.timeout(15_000), headers }); }
   catch { throw new HttpError(503, "Session storage is unavailable. Please retry shortly."); }
   if (!response.ok) {
     const body = await response.text();

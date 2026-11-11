@@ -26,7 +26,7 @@ GitHub stores the source. Vercel runs the website. Your group only needs the mee
    | `GOOGLE_MAPS_API_KEY` | Server key restricted to Places API (New) and Routes API, configured for requests from your host. A key restricted to your home IP needs separate hosting configuration. |
    | `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY` | Separate browser key, restricted to Maps JavaScript API. |
    | `SUPABASE_URL` | Supabase project URL. |
-   | `SUPABASE_SERVICE_ROLE_KEY` | Private service-role key for that Supabase project. |
+   | `SUPABASE_SERVICE_ROLE_KEY` | Private Supabase secret key (`sb_secret_...`) or legacy service-role key for that project. Prefer a new secret key. |
 
    Invitations use the hostname where the app is open. You can optionally set `NEXT_PUBLIC_GOOGLE_MAP_ID` to your own Google JavaScript map ID.
 4. Deploy. Add the exact live hostname, such as `https://your-project.vercel.app/*`, to the **Websites** restrictions for the browser key in Google Cloud. Save and allow the restriction change to take effect.
